@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap1.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+    <style>
+    	#Role
+    	{
+    		display: flex;
+    	}
+        .green{
+            color: #5de784;
+        }
+        #bgc_c{
+            background-color: #5de784;
+        }
+    </style>
+
+    <body>
+
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="logo span4">
+                        <h1><a href="{% url 'index' %}" class="green">Epidemic Site Code Management System<span class="green">.</span></a></h1>
+
+                    </div>
+                    <div class="links span8">
+                        <a class="green" href="/user/register" rel="tooltip" data-placement="bottom" data-original-title="Home">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="register-container container">
+            <div class="row">
+                <div class="register span6">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <h2>Login to<span class="green"><strong>US</strong></span></h2>
+                        {% for field in frm %}
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.name == "code" %}
+                                <img src="/image/code">
+                            {% endif %}
+                            <span style="color: red">{{ field.errors.0 }}</span>
+                        {% endfor %}
+                        <div id="Role">
+                        	<label for="Role">Admin</label>
+                        	<input type="radio" id="admin" name="role" value="admin" >
+                        	<label for="Role">User</label>
+                            <input type="radio" id="user" name="role" value="user" checked="checked">
+                        </div>
+
+                        <div>
+                            <button type="submit" id="bgc_c" >Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+		<div align="center">Copyright &copy; Epidemic Site Code Management System All rights reserved.<a target="_blank" href="#"></a>
+</div>
+
+</body>
+</html>

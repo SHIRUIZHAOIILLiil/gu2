@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Modify</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static  'js/bootstrap.min.js' %}"></script>
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+
+        #bgc_c {
+            color: #5de784;
+        }
+
+        #bgc_r {
+            color: #bd081c;
+        }
+
+        .bor {
+            margin: 10%;
+        }
+        .but{
+            margin-top: 5%;
+            display: flex;
+            width: 100%;
+        }
+        .modi{
+            width: 100%;
+            height: 5%;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="bgc_c" href="/index">Epidemic Site Code Management System</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        <img src="{% static 'images/av.png' %}" width="30">{{ request.session.Info.name }} <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'user_info' %}">Personal</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="bor table-bordered">
+    <h2>User Information</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label>User ID</label>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"></span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="{{ userInfo.iduser }}"
+                   readonly>
+            <span class="input-group-addon"></span>
+        </div>
+
+        <label>Phone</label>
+        <div class="input-group">
+            <span class="input-group-addon"></span>
+            <input type="text" class="form-control" aria-describedby="basic-addon2" value="{{ userInfo.phone }}"
+                   readonly>
+            <span class="input-group-addon" id="basic-addon2"></span>
+        </div>
+
+        <label>Name</label>
+        <div class="input-group">
+            <span class="input-group-addon"></span>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                   value="{{ userInfo.name }}" readonly>
+            <span class="input-group-addon"></span>
+        </div>
+
+        <label>Status</label>
+        <div class="input-group">
+            <span class="input-group-addon"></span>
+            <select class="form-control" name="status">
+                <option value="{{ userInfo.status }}" selected hidden>{{ userInfo.status }}</option>
+                <option id="bgc_c" value="health">health</option>
+                <option id="bgc_r" value="abnormal">abnormal</option>
+                <option value="unknown" style="color: #e0b849">unknown</option>
+            </select>
+            <span class="input-group-addon"></span>
+        </div>
+
+        <div class="btn-group but" role="group">
+            <button type="submit" class="btn btn-default modi"><h2>Modify</h2></button>
+        </div>
+    </form>
+
+</div>
+</body>

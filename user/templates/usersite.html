@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User-Site</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static  'js/bootstrap.min.js' %}"></script>
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+
+        #bgc_c {
+            color: #5de784;
+        }
+
+        #bgc_r {
+            color: #bd081c;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="bgc_c" href="/index">Epidemic Site Code Management System</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <form class="navbar-form navbar-left" method="get">
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search">
+                    <input type="text" name="s_time" class="form-control" placeholder="Search time...">
+                </div>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"
+                                                                    aria-hidden="true"></span></button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        <img src="{% static 'images/av.png' %}" width="30">{{ request.session.Info.name }} <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'user_info' %}">Personal</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div>
+    <div class="container">
+        <div class="bs-example" data-example-id="panel-without-body-with-table">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div style="display: flex" class="panel-heading">User Visit Record &nbsp;&nbsp;&nbsp;
+                    <p style="color: #5de784">total count: {{ count }}</p></div>
+
+                <!-- Table -->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Visit Record</th>
+                        <th>Site ID</th>
+                        <th>User ID</th>
+                        <th>Visit time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in queryset %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter |add:page_start_index }}</th>
+                            <th>{{ obj.idsite }}</th>
+                            <td>{{ obj.iduser }}</td>
+                            <td>{{ obj.e_time }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix">
+                <ul class="pagination" style="float: left">
+                    {{ page_str }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

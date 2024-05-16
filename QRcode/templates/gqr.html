@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate QRcode</title>
+</head>
+<body>
+<p>Complete generate!<span id="jump">3</span>seconds left to jump to the home page</p>
+<script>
+    onload=function () {
+        setInterval(go,1000)
+    };
+    var x=2;
+    function go() {
+
+        if (x>=0){
+            document.getElementById("jump").innerText=x;
+        }else {
+            location.href="/index2";
+        }
+        x--;
+    }
+</script>
+</body>
+</html>

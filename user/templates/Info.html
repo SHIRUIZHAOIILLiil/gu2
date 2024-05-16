@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PersonInfo</title>
+    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    <link rel="stylesheet" href="{% static 'css/app.css'%}">
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+</head>
+<style>
+	#submit
+{
+cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    background: #00FFFF;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 0;
+    -moz-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+    box-shadow: 0 15px 30px 0 rgba(255,255,255,.1) inset;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,.1);
+    -o-transition: all .2s;
+    -moz-transition: all .2s;
+    -webkit-transition: all .2s;
+    -ms-transition: all .2s;
+}
+
+.cyan
+{
+	color: #00FFFF;
+}
+#cyan{
+	color: #00FFFF;
+}
+.lightgreen{
+    color: #46e473;
+}
+.big{
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <a class="navbar-brand font-weight-bolder mr-3"
+       {% if request.session.Info.role == "user" %}
+            href="{% url 'index' %}"
+       {% else %}
+            href="{% url 'index2' %}"
+       {% endif %}
+       >Home</a>
+    <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsDefault">
+
+    	
+    	<ul class="navbar-nav ml-auto align-items-center">
+    		{% if not request.session %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% else %}
+                    <ul class="MenuDropdown">
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+            {% endif %}
+    	</ul>
+    </div>
+    </nav>    
+    <main role="main">
+        
+    
+    <section class="bg-gray200 pt-5 pb-5">
+    <div class="container">
+    	<div class="row justify-content-center">
+    		<div class="col-md-7">
+    			<article class="card">
+    			<img class="card-img-top mb-2" src="{% static 'images/av.png' %}" width="" alt="Card image">
+    			<div class="card-body">
+                    <h1 class="card-title display-4">UserNo. :
+                        {{  request.session.Info.id }} </h1>
+    				<ul>
+    					<li class="big">Name: {{request.session.Info.name}}</li>
+    					<li class="big">Phone/Username: {{ request.session.Info.phone }}</li>
+    					<li class="lightgreen big">Status: {{ request.session.Info.status }}</li>
+    				</ul>
+
+    				
+    				<!-- Begin Comments -replace demowebsite with your own id
+                    ================================================== -->
+    				<div id="comments" class="mt-4">
+    					<div id="disqus_thread">
+    					</div>
+    					<script type="text/javascript">
+                            var disqus_shortname = 'demowebsite'; 
+                            var disqus_developer = 0;
+                            (function() {
+                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                            })();
+                        </script>
+    					<noscript>
+    					Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    					</noscript>
+    				</div>
+    				<!--End Comments
+                    ================================================== -->
+    			</div>
+    			</article>
+    		</div>
+    	</div>
+    </div>
+   
+    </section>
+        
+    </main>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/theme.js"></script>
+    
+    <footer class="footer pt-5 pb-5 text-center">
+        
+    <div class="container">
+        
+          <div class="socials-media">
+    
+            <ul class="list-unstyled">
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-facebook"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-twitter"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-instagram"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-google-plus"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-behance"></i></a></li>
+              <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-dribbble"></i></a></li>
+            </ul>
+    
+          </div>
+        
+            <!--
+              All the links in the footer should remain intact.
+              You may remove the links only if you donate:
+              https://www.wowthemes.net/freebies-license/
+            -->
+          <p>©  <span class="credits font-weight-bold">        
+            <a target="_blank" class="text-dark" href="#"><u>Production is only for operation</u> by Zhao Shirui</a>
+          </span>
+          </p>
+    
+    
+        </div>
+        
+    </footer>    
+</body>
+    
+</html>

@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link class="TopmenuFont" href="#" rel="stylesheet" type="text/css"/>
+    <link class="TextFont" href="#" rel="stylesheet" type="text/css"/>
+    <link class="TitleFont" href="#" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic|Droid+Sans|PT+Sans:400,700,400italic,700italic|PT+Sans+Narrow|Open+Sans:400,300'
+          rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static 'javascript/jquery-latest.js' %}"></script>
+    <script type="text/javascript" src="{% static 'javascript/red-sky-options.js' %}"></script>
+    <script type="text/javascript" src="{% static 'shortcodes/shortcodes.js' %}"></script>
+    <script type="text/javascript" src="{% static 'javascript/jquery.prettyPhoto.js' %}"></script>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'shortcodes/shortcodes.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../static/bootsrap/css/bootstrap.min.css">
+    <!-- START SETTINGS BOX -->
+    <script type="text/javascript" src="{% static 'settingsbox/farbtastic/farbtastic.js' %}"></script>
+    <script type="text/javascript" src="{% static 'settingsbox/settingsbox.js' %}"></script>
+    <link href="{% static 'settingsbox/settingsbox.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'settingsbox/farbtastic/farbtastic.css' %}" rel="stylesheet" type="text/css">
+    <!-- END SETTINGS BOX -->
+
+    <title>Epidemic Site Code Management System</title>
+</head>
+<style>
+    .t {
+        float: left;
+        display: flex;
+        margin-right: 80px !important;
+        margin-left: 40px !important;
+    }
+
+    .disappear {
+        float: left;
+        display: flex;
+        margin-left: 120px !important;
+        margin-right: 100px !important;
+    }
+
+    #bor {
+        margin-left: 5% !important;
+    }
+
+    .chai {
+        margin-left: 0 !important;
+    }
+
+    .setting {
+        height: 200px;
+    !important;
+    }
+
+
+
+</style>
+<body>
+
+
+<!-- START TOP HIDDEN AREA -->
+
+<div id="box">
+    <div class="container">
+        <!-- START HEADER -->
+        <div id="header">
+            <div class="one-third columns">
+                <div class="logo"><a href="{% url 'index' %}"><span>Epidemic Site </span>Code Management System</a>
+                </div>
+            </div>
+            <div class="two-thirds_last columns">
+
+                <ul class="topmenu">
+                    <li class="active"><a class="active" href="">Homepage</a></li>
+
+                    {% if not request.session.Info %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% else %}
+                        <li><a href="#"><img src="{% static 'images/av.png' %}" width="30"></a>
+                            <ul class="MenuDropdown">
+                                <li><a href="{% url 'user_info' %}">Personal</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- END HEADER -->
+
+        <!-- START QUOTE -->
+        <div class="quote one columns"> Welcome to the epidemic site code management system.<br/>
+            Health is the first guarantee of the people.
+        </div>
+        <!-- END QUOTE -->
+
+
+        <div >
+            <!-- START WORKS -->
+            <div class="works carousel bpadding">
+                <div class="carouselNext"></div>
+                <div class="carouselBack"></div>
+                <div class="title">Application 1</div>
+                <div class="clear"></div>
+                <div class="titleline"></div>
+                <div class="carouselView ">
+                    <div class="carouselContainer chai">
+                        <div class="columns four t ">
+                            <div class="work"><a href="/user/usersite" rel="prettyPhoto[a]"><img
+                                    src="{% static 'images/images/L_R.jpg' %}" alt="cards"
+                                    style="height: 150px;width: 150px; "/></a>
+                                <h3><a href="/user/usersite">My visit record</a></h3>
+                                <h4>Detailed Information</h4>
+                            </div>
+                        </div>
+                        <div class="columns four t ">
+                            <div class="work"><a href="/user/info" rel="prettyPhoto[a]"><img
+                                    src="{% static 'images/images/PersonInfo.jpg' %}" alt="cards"
+                                    style="height: 150px;width: 150px; "/></a>
+                                <h3><a href="/user/info">Personal Information</a></h3>
+                                <h4>Check Information</h4>
+                            </div>
+                        </div>
+                        <div class="columns four t ">
+                            <div class="work"><a href="/QR/scan" rel="prettyPhoto[a]"><img
+                                    src="{% static 'images/images/Scan.jpg' %}" alt="cards"
+                                    style="height: 150px;width: 150px; "/></a>
+                                <h3><a href="/QR/scan">Scan</a></h3>
+                                <h4>Scan here</h4>
+                            </div>
+                        </div>
+
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- END WORKS -->
+
+            <div class="blogs carousel bpadding">
+                <div class="carouselNext"></div>
+                <div class="carouselBack"></div>
+                <div class="title">Application 2</div>
+                <div class="clear"></div>
+                <div class="titleline"></div>
+                <div class="carouselView">
+                    <div class="carouselContainer" id="bor"
+                         style="width: 1954px; margin-left: 0px; transition: margin-left 0.2s linear 0s;">
+                        <div class="columns four disappear setting">
+                            <div class="newpost">
+                                <div class="viewpost"><a href="/user/site">View</a></div>
+                                <a href="/user/site" class="fade" title="This is the description"><span></span><img
+                                        src="{% static 'images/images/Site.jpg' %}" alt="cards"
+                                        style="height: 150px;width: 150px; margin-left: 35px;"></a>
+                                <h2 style="text-align: center; background-position: unset"><a href="/user/site">Apply
+                                    site code</a></h2>
+                                <p style="text-align: center">Protect our safety</p>
+                            </div>
+                        </div>
+                        <div class="columns four disappear">
+                            <div class="newpost">
+                                <div class="viewpost"><a href="/user/mysite">View</a></div>
+                                <a href="/user/mysite" class="fade" title="This is the description"><img
+                                        src="{% static 'images/images/MySite.jpg' %}" alt="cards"
+                                        style="height: 150px;width: 150px; margin-left: 35px; "></a>
+                                <h2 style="text-align: center; background-position: unset"><a
+                                        href="/user/mysite">Mine</a></h2>
+                                <p style="text-align: center">My site code</p>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- START BOTTOMAREA -->
+
+        <div style="display:none">
+            <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript'
+                    charset='gb2312'></script>
+        </div>
+        <!-- END BOTTOMAREA -->
+    </div>
+</div>
+</body>
+
+</html>
